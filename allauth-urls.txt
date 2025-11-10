@@ -1,0 +1,22 @@
+# allauth Account URLs (Prefix: /accounts/)
+
+# Authentication
+signup/                       account_signup
+login/                        account_login
+logout/                       account_logout
+inactive/                     account_inactive
+
+# Password Management
+password/change/              account_change_password
+password/set/                 account_set_password
+password/reset/               account_reset_password
+password/reset/done/          account_reset_password_done
+password/reset/key/<uidb36>/<key>/    account_reset_password_from_key
+password/reset/key/done/      account_reset_password_from_key_done
+
+# Email Management and Confirmation
+email/                        account_email
+confirm-email/                account_email_verification_sent
+confirm-email/<key>/          account_confirm_email
+email/confirmation/           account_confirm_email
+email/confirmation/done/      account_confirm_email_done
