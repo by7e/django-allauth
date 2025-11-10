@@ -32,16 +32,16 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth', # Only once
+    'django.contrib.auth', 
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages', # Only once
+    'django.contrib.messages', 
     'django.contrib.staticfiles',
 
     'a_core',
 
     'allauth',
-    'allauth.account', # <-- FIX: The essential comma is here!
+    'allauth.account', 
 ]
 
 MIDDLEWARE = [
