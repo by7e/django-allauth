@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li>
+                <a href="{% url 'account_logout' %}">Logout</a>
+            </li>
+            <li>
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'update_profile' %}">Update Profile</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url 'account_login' %}">Login</a>
+            </li>
+            <li>
+                <a href="{% url 'account_signup' %}">Sign Up</a>
+            </li>
+        {% endif %}
+    </nav>
+
+    {% block body %}
+        <h1>Core</h1>
+    {% endblock %}
+</body>
+</html>

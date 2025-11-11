@@ -1,0 +1,28 @@
+{% extends 'a_core/layout.html' %}
+
+{% block body %}
+
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" style="max-width: 150px; height: auto; border-radius: 8px;">
+    {% else %}
+        <p>No profile picture set.</p>
+    {% endif %}
+
+    <h2>User Profile</h2>
+    <p>Welcome, {{ user.username }}!</p>
+    <p>Email: {{ user.email }}</p>
+    
+    {% if profile.bio %}
+        <p>Bio: {{ profile.bio }}</p>
+    {% endif %}
+
+    {% if profile.age %}
+         <p>Age: {{ profile.age }}</p>
+    {% endif %}
+
+    {% if profile.location %}
+        <p>Location: {{ profile.location }}</p>
+    {% endif %}
+    
+    
+{% endblock %}

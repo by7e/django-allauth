@@ -1,0 +1,26 @@
+{% extends 'a_core/layout.html' %}
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+        
+        <!-- Django requires this security token for all POST forms -->
+        {% csrf_token %}
+        
+        <h2>Current Profile Picture</h2>
+        {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}" alt="Current Profile Picture" style="max-width: 150px; height: auto; border-radius: 8px;">
+            <br>
+        {% else %}
+            <p>No profile picture currently set.</p>
+        {% endif %}
+
+        <h2>Profile Details</h2>
+        
+        <!-- Renders the form fields (bio, profile_picture, age, location) -->
+        {{ form.as_p }}
+
+        <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Save Profile
+        </button>
+    </form>
+{% endblock %}
