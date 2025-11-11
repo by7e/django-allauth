@@ -12,7 +12,6 @@ class UserProfileForm(forms.ModelForm):
         label='Biography'
     )
     
-    # Customizing the profile_picture input for better user feedback
     profile_picture = forms.ImageField(
         label='Profile Picture (Optional)',
         required=False,
