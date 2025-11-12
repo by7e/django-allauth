@@ -1,5 +1,5 @@
 from django import forms
-from a_core.models import UserProfile
+from a_core.models import UserProfile, Cats, CatPicture
 from django.contrib.auth import get_user_model 
 
 User = get_user_model()
@@ -30,4 +30,13 @@ class UserProfileForm(forms.ModelForm):
         labels = {
             'age': 'Age (Years)',
             'location': 'Location',
+        }
+
+class CatAdoptionForm(forms.ModelForm):
+    
+    class Meta:
+        model = Cats
+        fields = ['name', 'age', 'breed', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Describe the cat...'}),
         }
