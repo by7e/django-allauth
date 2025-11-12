@@ -1,0 +1,21 @@
+{% extends 'a_core/layout.html' %}
+
+{% block body %}
+    <h1>Cats Available for adoption</h1>
+
+    {% for cat in cats %}
+        <div style="width: auto;height: auto; background-color: aqua;">
+            <p>from {{ cat.publisher.username }}</p>
+            <p>name: {{ cat.name }}</p>
+            <p>age: {{ cat.age }}</p>
+            <p>description: {{ cat.description }}</p>
+            {% if cat.is_ill %}
+                <p>ill</p>
+            {% endif %}
+            <p>published on: {{ cat.publication_date }}</p>
+        </div>
+    {% empty %}
+        <p>No cats available for adoption at the moment.</p>
+    {% endfor %}
+
+{% endblock %}

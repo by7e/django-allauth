@@ -1,0 +1,22 @@
+{% extends 'a_core/layout.html' %}
+
+{% block body %}
+    <h1>Cat Details</h1>
+    {% if pictures %}
+        <div class="cat-images">
+            {% for picture in pictures %}
+                <img src="{{ picture.image.url }}" alt="Cat Image">
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No images found for this cat</p>
+    {% endif %}
+    <p>from {{ cat.publisher.username }}</p>
+    <p>name: {{ cat.name }}</p>
+    <p>age: {{ cat.age }}</p>
+    <p>description: {{ cat.description }}</p>
+    {% if cat.is_ill %}
+        <p>ill</p>
+    {% endif %}
+    <p>published on: {{ cat.publication_date }}</p>
+{% endblock %}
