@@ -1,0 +1,18 @@
+{% extends 'a_core/layout.html' %}
+
+{% block body %}
+    <h2>Post a Cat for Adoption 🐈</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <p>
+            <label for="id_cat_images">Upload Pictures:</label>
+            <input type="file" name="cat_images" id="id_cat_images" multiple>
+        </p>
+
+        <button type="submit">Submit Cat for Adoption</button>
+    </form>
+{% endblock %}
