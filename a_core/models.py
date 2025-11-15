@@ -14,6 +14,7 @@ class UserProfile(models.Model):
     
 class Cats(models.Model):
     publisher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    adopter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='adopted_cats', on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=50)
     breed = models.CharField(max_length=50)
     age = models.PositiveIntegerField()
@@ -23,7 +24,7 @@ class Cats(models.Model):
     is_ill = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.name
+        return f"{self.id}: {self.name}"
     
 
 class CatPicture(models.Model):
