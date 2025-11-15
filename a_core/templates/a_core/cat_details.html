@@ -19,4 +19,53 @@
         <p>ill</p>
     {% endif %}
     <p>published on: {{ cat.publication_date }}</p>
+
+    {% if user.is_authenticated and user != cat.publisher %}
+        {% if accepted_request %}
+            <p>The owner of this cat has accepted your adoption request.</p>
+        {% elif cat.is_adopted %}
+            <p>This cat has already been adopted.</p>
+        {% else %}
+            {% if adoption_requests %}
+                <p>You have already requested to adopt this cat.</p>
+                <form method="post" action="{% url 'cancel_adoption_request' adoption_requests.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Cancel Adoption Request</button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'request_adoption' cat.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Request Adoption</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    
+    {% if user == cat.publisher %}
+        {% if cat.is_adopted %}
+            <p>This cat has been adopted by
+                <a href="{% url 'other_profile' cat.adopter.id %}">
+                    {{ cat.adopter }}
+                </a>.
+            </p>
+        {% else %}
+            {% if adoption_requests %}
+                <h2>Pending Adoption Requests</h2>
+                <ul>
+                    {% for adoption_request in adoption_requests %}
+                        <li>
+                            {{ adoption_request.requester.username }} - 
+                            <form method="post" action="{% url 'accept_adoption_request' adoption_request.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit">Accept</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {# Only runs if adoption_requests is None (not publisher) or empty #}
+                <p>No pending adoption requests.</p>
+            {% endif %}
+        {% endif %}
+    {% endif %}
 {% endblock %}
