@@ -1,0 +1,28 @@
+{% extends 'a_core/layout.html' %}
+
+{% block body %}
+    <h1>{{ profile_user.username }}'s Profile</h1>
+    
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="{{ profile_user.username }}'s Profile Picture" style="max-width: 150px; height: auto; border-radius: 8px;">
+    {% else %}
+        <p>No profile picture set.</p>
+    {% endif %}
+    
+    <p><strong>Bio:</strong> {{ profile.bio }}</p>
+    <p><strong>Age:</strong> {{ profile.age }}</p>
+    <p><strong>Location:</strong> {{ profile.location }}</p>
+    
+    <h2>Cats Published by {{ profile_user.username }}</h2>
+    {% if cats %}
+        <ul>
+            {% for cat in cats %}
+                <li>
+                    <a href="{% url 'cat_details' cat.id %}">{{ cat.name }}</a> - {{ cat.age }} years old
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ profile_user.username }} has not published any cats for adoption yet.</p>
+    {% endif %}
+{% endblock %}
